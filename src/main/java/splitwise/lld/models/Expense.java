@@ -1,9 +1,6 @@
 package splitwise.lld.models;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +9,7 @@ import java.util.Map;
 
 @Getter
 @Setter
+@Entity
 public class Expense  extends BaseClass{
     private String expenseNAme;
     private String description;
@@ -23,6 +21,9 @@ public class Expense  extends BaseClass{
     private User createdBy; //admin
 
     private double amount;
+
+    @ManyToOne
+    private Group group;
 
     @OneToMany(mappedBy = "expense")
     private List<UserExpense> userExpenses;
